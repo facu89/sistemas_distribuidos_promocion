@@ -1,0 +1,223 @@
+{
+  "name": "Unidad_LACT",
+  "parameters": {
+    "Dispositivo": {
+      "dataType": "String",
+      "value": "SimLACT"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "dataType": "Boolean",
+      "historicalDeadband": 0.0,
+      "historyEnabled": true,
+      "historyMaxAge": 1,
+      "historyMaxAgeUnits": "MIN",
+      "historyProvider": "Historico_LACT",
+      "name": "Valvula_Desviadora",
+      "tagType": "AtomicTag",
+      "valueSource": "memory"
+    },
+    {
+      "dataType": "Float8",
+      "defaultValue": 68.5,
+      "engUnit": "%",
+      "historyEnabled": true,
+      "historyProvider": "Historico_LACT",
+      "name": "Nivel_Tanque",
+      "tagType": "AtomicTag",
+      "valueSource": "memory"
+    },
+    {
+      "dataType": "Float8",
+      "engHigh": 500.0,
+      "engUnit": "m3/h",
+      "expression": "if({[.]Bomba_Marcha}, {[.]Sensores/Caudal_Bruto}, 0)",
+      "historyEnabled": true,
+      "historyMaxAge": 1,
+      "historyProvider": "Historico_LACT",
+      "historyTimeDeadbandUnits": "MIN",
+      "name": "Caudal_Bruto",
+      "tagType": "AtomicTag",
+      "valueSource": "expr"
+    },
+    {
+      "name": "Sensores",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "dataType": "Float8",
+          "name": "Presion",
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "ns\u003d1;s\u003d[{Dispositivo}]{InstanceName}/Presion"
+          },
+          "opcServer": "Ignition OPC UA Server",
+          "tagType": "AtomicTag",
+          "valueSource": "opc"
+        },
+        {
+          "dataType": "Float8",
+          "name": "Temperatura",
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "ns\u003d1;s\u003d[{Dispositivo}]{InstanceName}/Temperatura"
+          },
+          "opcServer": "Ignition OPC UA Server",
+          "tagType": "AtomicTag",
+          "valueSource": "opc"
+        },
+        {
+          "dataType": "Float8",
+          "name": "Caudal_Ingreso",
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "ns\u003d1;s\u003d[{Dispositivo}]{InstanceName}/Caudal_Ingreso"
+          },
+          "opcServer": "Ignition OPC UA Server",
+          "tagType": "AtomicTag",
+          "valueSource": "opc"
+        },
+        {
+          "dataType": "Float8",
+          "name": "Caudal_Bruto",
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "ns\u003d1;s\u003d[{Dispositivo}]{InstanceName}/Caudal_Bruto"
+          },
+          "opcServer": "Ignition OPC UA Server",
+          "tagType": "AtomicTag",
+          "valueSource": "opc"
+        },
+        {
+          "dataType": "Float8",
+          "name": "BSW",
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "ns\u003d1;s\u003d[{Dispositivo}]{InstanceName}/BSW"
+          },
+          "opcServer": "Ignition OPC UA Server",
+          "tagType": "AtomicTag",
+          "valueSource": "opc"
+        },
+        {
+          "dataType": "Float8",
+          "name": "Densidad_API",
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "ns\u003d1;s\u003d[{Dispositivo}]{InstanceName}/Densidad_API"
+          },
+          "opcServer": "Ignition OPC UA Server",
+          "tagType": "AtomicTag",
+          "valueSource": "opc"
+        },
+        {
+          "dataType": "Float8",
+          "name": "Nivel_Tanque",
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "ns\u003d1;s\u003d[{Dispositivo}]{InstanceName}/Nivel_Tanque"
+          },
+          "opcServer": "Ignition OPC UA Server",
+          "tagType": "AtomicTag",
+          "valueSource": "opc"
+        }
+      ]
+    },
+    {
+      "dataType": "Boolean",
+      "defaultValue": false,
+      "historicalDeadband": 0.0,
+      "historyEnabled": true,
+      "historyMaxAge": 1,
+      "historyMaxAgeUnits": "MIN",
+      "historyProvider": "Historico_LACT",
+      "name": "Bomba_Marcha",
+      "tagType": "AtomicTag",
+      "valueSource": "memory"
+    },
+    {
+      "alarms": [
+        {
+          "displayPath": "LACT/BSW Alto",
+          "mode": "AboveValue",
+          "name": "BSW Alto",
+          "priority": "High",
+          "setpointA": 1.0
+        }
+      ],
+      "dataType": "Float8",
+      "engUnit": "%",
+      "expression": "{[.]Sensores/BSW}",
+      "historyEnabled": true,
+      "historyMaxAge": 1,
+      "historyProvider": "Historico_LACT",
+      "historyTimeDeadbandUnits": "MIN",
+      "name": "BSW",
+      "tagType": "AtomicTag",
+      "valueSource": "expr"
+    },
+    {
+      "dataType": "Float8",
+      "engUnit": "°C",
+      "expression": "{[.]Sensores/Temperatura}",
+      "historyEnabled": true,
+      "historyMaxAge": 1,
+      "historyProvider": "Historico_LACT",
+      "historyTimeDeadbandUnits": "MIN",
+      "name": "Temperatura",
+      "tagType": "AtomicTag",
+      "valueSource": "expr"
+    },
+    {
+      "dataType": "Float8",
+      "engUnit": "m3/h",
+      "expression": "{[.]Caudal_Bruto} * (1 - {[.]BSW} / 100)",
+      "historyEnabled": true,
+      "historyProvider": "Historico_LACT",
+      "name": "Caudal_Neto",
+      "tagType": "AtomicTag",
+      "valueSource": "expr"
+    },
+    {
+      "dataType": "Float8",
+      "engHigh": 300.0,
+      "engUnit": "psi",
+      "expression": "if({[.]Bomba_Marcha}, {[.]Sensores/Presion}, {[.]Sensores/Presion} * 0.3)",
+      "historyEnabled": true,
+      "historyMaxAge": 1,
+      "historyProvider": "Historico_LACT",
+      "historyTimeDeadbandUnits": "MIN",
+      "name": "Presion",
+      "tagType": "AtomicTag",
+      "valueSource": "expr"
+    },
+    {
+      "dataType": "Float8",
+      "engHigh": 60.0,
+      "engUnit": "ªAPI",
+      "expression": "{[.]Sensores/Densidad_API}",
+      "historyEnabled": true,
+      "historyMaxAge": 1,
+      "historyProvider": "Historico_LACT",
+      "historyTimeDeadbandUnits": "MIN",
+      "name": "Densidad_API",
+      "tagType": "AtomicTag",
+      "valueSource": "expr"
+    },
+    {
+      "dataType": "Float8",
+      "defaultValue": 0.0,
+      "engHigh": 100000.0,
+      "engUnit": "m3",
+      "historyEnabled": true,
+      "historyMaxAge": 1,
+      "historyProvider": "Historico_LACT",
+      "historyTimeDeadbandUnits": "MIN",
+      "name": "Volumen_Acumulado",
+      "tagType": "AtomicTag",
+      "valueSource": "memory"
+    }
+  ]
+}

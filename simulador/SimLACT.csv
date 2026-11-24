@@ -1,0 +1,8 @@
+Time Interval, Browse Path, Value Source, Data Type
+"0","LACT_Bateria_1/Nivel_Tanque","ramp(20.0, 90.0, 600.0, true)","Double"
+"0","LACT_Bateria_1/Presion","random(185.0, 205.0, true)","Double"
+"0","LACT_Bateria_1/BSW","random(0.3, 1.2, true)","Double"
+"0","LACT_Bateria_1/Temperatura","sine(35.0, 42.0, 600.0, true)","Double"
+"0","LACT_Bateria_1/Caudal_Bruto","sine(220.0, 240.0, 120.0, true)","Double"
+"0","LACT_Bateria_1/Densidad_API","random(32.0, 33.0, true)","Double"
+"0","LACT_Bateria_1/Caudal_Ingreso","sine(200.0, 260.0, 300.0, true)","Double"

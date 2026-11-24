@@ -1,0 +1,90 @@
+{
+  "name": "LACT_Bateria_1",
+  "tagType": "UdtInstance",
+  "tags": [
+    {
+      "name": "Temperatura",
+      "tagType": "AtomicTag"
+    },
+    {
+      "name": "Volumen_Acumulado",
+      "tagType": "AtomicTag",
+      "value": 259.849
+    },
+    {
+      "name": "Sensores",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "name": "Caudal_Ingreso",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Nivel_Tanque",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Temperatura",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Densidad_API",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "BSW",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Presion",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Caudal_Bruto",
+          "tagType": "AtomicTag"
+        }
+      ]
+    },
+    {
+      "name": "Bomba_Marcha",
+      "tagType": "AtomicTag",
+      "value": false
+    },
+    {
+      "dataType": "Float8",
+      "historyEnabled": true,
+      "name": "Caudal_Bruto",
+      "tagType": "AtomicTag"
+    },
+    {
+      "dataType": "Float8",
+      "historyEnabled": true,
+      "name": "BSW",
+      "tagType": "AtomicTag"
+    },
+    {
+      "name": "Densidad_API",
+      "tagType": "AtomicTag"
+    },
+    {
+      "name": "Presion",
+      "tagType": "AtomicTag"
+    },
+    {
+      "name": "Nivel_Tanque",
+      "tagType": "AtomicTag",
+      "value": 100.0
+    },
+    {
+      "name": "Caudal_Neto",
+      "tagType": "AtomicTag"
+    },
+    {
+      "historyEnabled": true,
+      "name": "Valvula_Desviadora",
+      "tagType": "AtomicTag",
+      "value": true
+    }
+  ],
+  "typeId": "Unidad_LACT"
+}
